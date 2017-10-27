@@ -1,31 +1,33 @@
 #include <iostream>
 using namespace std;
 
-void strcopy(char str[]);
-void strlength(char str[]);
-void strcatt(char str1[],char str2[]);
-void strcompare(char str1[],char str2[]);
-void charsearch(char str[],char c);
-
+void Strcpy(char str[]);
+void Strlen(char str[]);
+void Strcat(char str1[],char str2[]);
+void Strcom(char str1[],char str2[]);
+void Strchr(char str[],char c);
+void Strstr(char str[],char sub[]);
 
 
 
 int main() {
-	char str1[100],str2[100];char c;
+	char str1[5],str2[5],sub[5];char c;
 	cout<<"input two strings\n";
 	cin>>str1>>str2;
 	cout<<"enter a character to check it occurence"<<endl;
 	cin>>c;
-              strcopy( str1);
-              strlength(str1);
-              strcatt( str1, str2);
-              strcompare( str1,str2);
-              charsearch( str1,c);
-            
+	cout<<"enter a substring"<<endl;
+	cin>>sub;
+              Strcpy( str1);
+              Strlen(str1);
+              Strcat( str1, str2);
+              Strcom( str1,str2);
+              Strchr( str1,c);
+              Strstr(str1,sub);
 
 	return 0;
 }
-void strcopy(char str[]){
+void Strcpy(char str[]){
 	char arr[100];int i;
 	for(i=0;str[i]!='\0';i++)
 	{
@@ -34,7 +36,7 @@ void strcopy(char str[]){
 	arr[i]='\0';
 	cout<<"the copied string is "<<arr<<"\n";
 }
-void strlength(char str[])
+void Strlen(char str[])
 {
 	int len=0,i;
 	for(i=0;str[i]!='\0';i++)
@@ -43,7 +45,7 @@ void strlength(char str[])
 	}
 	cout<<"the length of the string is "<<len;
 }
-void strcatt(char str1[],char str2[]){
+void Strcat(char str1[],char str2[]){
 	int i,j;
 	for(i = 0; str1[i] != '\0'; i++);
 
@@ -53,7 +55,7 @@ void strcatt(char str1[],char str2[]){
     }
 	cout<<"\nthe combined string is "<<str1;
 }
-void strcompare(char str1[],char str2[]){
+void Strcom(char str1[],char str2[]){
 	int i,j,c=0;
 	for(i=0;(str1[i]!='\0'||str2[i]!='\0');i++)
 	{
@@ -71,7 +73,7 @@ void strcompare(char str1[],char str2[]){
 	cout<<"\nBoth strings not same."<<endl;
 	
 }
-void charsearch(char str[],char c)
+void Strchr(char str[],char c)
 {
 char* p = NULL;
     int i ;
@@ -83,5 +85,27 @@ char* p = NULL;
             break;
         }
     }
-   cout<<"the character"<<c<<" is found at position "<<i; 
+   cout<<"the character "<<c<<" is found at position "<<i; 
+}
+void Strstr(char str[],char sub[])
+{
+    
+    int i = 0, j = 0;
+   
+    while ((str[j] != '\0')||(sub[i] != '\0')) 
+    {
+        if (sub[i] != str[j])
+        {
+            j++;
+            i = 0;
+        }
+        else {
+            i++;
+            j++;
+        }
+    }
+    if (sub[i] == '\0')
+        cout<<"\nSubstring found in "<<str;
+    else
+        cout<<"\nSubstring not found";
 }
